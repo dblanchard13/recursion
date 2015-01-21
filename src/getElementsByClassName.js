@@ -4,7 +4,24 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-){
+var getElementsByClassName = function(className){
   // your code here
+ var result = [];
+
+  function inspect(element) {
+    var children = element.children;
+    for(var i = 0; i < children.length; i++) {
+      if(children[i].classList.contains(className)) {
+        result.push(children[i]);
+      }
+      if(children[i].hasChildNodes) {
+        inspect(children[i]);
+      }
+    }
+  }
+
+  inspect(document.documentElement);
+  return result;
 };
+  
+
